@@ -1,0 +1,1 @@
+# @vamship/cf-generator
