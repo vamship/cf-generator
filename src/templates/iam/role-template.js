@@ -19,6 +19,9 @@ class RoleTemplate extends Template {
      *        not be prefixed with "<Region>_".
      */
     constructor(key, roleName, noRegion) {
+        if (!key || typeof key !== 'string' || key.length <= 0) {
+            throw new Error('Invalid key specified (arg #1)');
+        }
         if (typeof roleName !== 'string' || roleName.length <= 0) {
             throw new Error('Invalid role name specified (arg #2)');
         }
@@ -39,7 +42,7 @@ class RoleTemplate extends Template {
             },
             ManagedPolicyArns: [],
             Policies: []
-        }, );
+        });
     }
 
     /**
