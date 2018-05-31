@@ -7,7 +7,9 @@ const expect = _chai.expect;
 const _rewire = require('rewire');
 const { testValues: _testValues } = require('@vamship/test-utils');
 
-const RoleLiteralReference  = _rewire('../../../src/utils/role-literal-reference');
+const RoleLiteralReference = _rewire(
+    '../../../src/utils/role-literal-reference'
+);
 
 describe('RoleLiteralReference', function() {
     function _createRoleLiteralReference(roleName, isRegionSpecific) {
@@ -22,9 +24,12 @@ describe('RoleLiteralReference', function() {
             _testValues.allButString('').forEach((invalidRoleName) => {
                 const wrapper = () => {
                     let isRegionSpecific = true;
-                    return new RoleLiteralReference(invalidRoleName, isRegionSpecific);
+                    return new RoleLiteralReference(
+                        invalidRoleName,
+                        isRegionSpecific
+                    );
                 };
-        
+
                 expect(wrapper).to.throw(error);
             });
         });
@@ -50,4 +55,3 @@ describe('RoleLiteralReference', function() {
         });
     });
 });
-

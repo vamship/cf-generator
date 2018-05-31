@@ -32,13 +32,9 @@ class RoleTemplate extends Template {
             };
             roleName = `_${roleName}`;
         }
-        super(key, 'AWS::IAM::Role',
-        {
+        super(key, 'AWS::IAM::Role', {
             RoleName: {
-                'Fn::Join': ['', [
-                    regionToken,
-                    roleName
-                ]]
+                'Fn::Join': ['', [regionToken, roleName]]
             },
             ManagedPolicyArns: [],
             Policies: []
@@ -115,13 +111,17 @@ class RoleTemplate extends Template {
         }
 
         let dynamicPolicyArn = {
-            'Fn::Join': ['', [
-                'arn:aws:iam::', {
-                    Ref: 'AWS::AccountId'
-                },
-                ':policy/',
-                policyName
-            ]]
+            'Fn::Join': [
+                '',
+                [
+                    'arn:aws:iam::',
+                    {
+                        Ref: 'AWS::AccountId'
+                    },
+                    ':policy/',
+                    policyName
+                ]
+            ]
         };
         this.properties.ManagedPolicyArns.push(dynamicPolicyArn);
 
@@ -148,7 +148,9 @@ class RoleTemplate extends Template {
             return policy.PolicyName === name;
         });
         if (existingPolicy !== undefined) {
-            throw new Error(`A policy with name [${name}] has already been defined`);
+            throw new Error(
+                `A policy with name [${name}] has already been defined`
+            );
         }
 
         this.properties.Policies.push({
@@ -161,4 +163,3 @@ class RoleTemplate extends Template {
 }
 
 module.exports = RoleTemplate;
-

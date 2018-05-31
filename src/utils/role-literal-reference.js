@@ -24,7 +24,9 @@ class RoleLiteralReference extends Reference {
         super(roleName);
 
         this._containsRegion = containsRegion !== false;
-        this._logger = _loggerProvider.getLogger(`RoleLiteralReference::${roleName}`);
+        this._logger = _loggerProvider.getLogger(
+            `RoleLiteralReference::${roleName}`
+        );
     }
 
     /**
@@ -38,14 +40,18 @@ class RoleLiteralReference extends Reference {
         let regionToken = this._containsRegion ? { Ref: 'AWS::Region' } : '';
 
         return {
-            'Fn::Join': ['', [
-                'arn:aws:iam::', {
-                    Ref: 'AWS::AccountId'
-                },
-                ':role/',
-                regionToken,
-                this.role
-            ]]
+            'Fn::Join': [
+                '',
+                [
+                    'arn:aws:iam::',
+                    {
+                        Ref: 'AWS::AccountId'
+                    },
+                    ':role/',
+                    regionToken,
+                    this.role
+                ]
+            ]
         };
     }
 
@@ -60,4 +66,3 @@ class RoleLiteralReference extends Reference {
 }
 
 module.exports = RoleLiteralReference;
-

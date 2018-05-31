@@ -12,7 +12,7 @@ const _loggerProvider = require('wysknd-log').loggerProvider;
 class UserLiteralReference extends Reference {
     /**
      * @protected
-     * @param {string} username Representing the literal name of the AWS User 
+     * @param {string} username Representing the literal name of the AWS User
      *        resource
      */
     constructor(username) {
@@ -21,7 +21,9 @@ class UserLiteralReference extends Reference {
         }
         super(username);
 
-        this._logger = _loggerProvider.getLogger(`UserLiteralReference::${username}`);
+        this._logger = _loggerProvider.getLogger(
+            `UserLiteralReference::${username}`
+        );
     }
 
     /**
@@ -33,13 +35,17 @@ class UserLiteralReference extends Reference {
      */
     resolve() {
         return {
-            'Fn::Join': ['', [
-                'arn:aws:iam::', {
-                    Ref: 'AWS::AccountId'
-                },
-                ':',
-                this.username
-            ]]
+            'Fn::Join': [
+                '',
+                [
+                    'arn:aws:iam::',
+                    {
+                        Ref: 'AWS::AccountId'
+                    },
+                    ':',
+                    this.username
+                ]
+            ]
         };
     }
 
@@ -54,4 +60,3 @@ class UserLiteralReference extends Reference {
 }
 
 module.exports = UserLiteralReference;
-

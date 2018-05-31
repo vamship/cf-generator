@@ -17,9 +17,7 @@ describe('RoleTemplate', function() {
         return new RoleTemplate(key, roleName, noRegion);
     }
 
-    beforeEach('Inject dependencies', () => {
-
-    });
+    beforeEach('Inject dependencies', () => {});
 
     describe('ctor()', () => {
         it('should throw an error if invoked without a valid key', () => {
@@ -30,7 +28,7 @@ describe('RoleTemplate', function() {
                     let noRegion = false;
                     return new RoleTemplate(invalidKey, roleName, noRegion);
                 };
-        
+
                 expect(wrapper).to.throw(error);
             });
         });
@@ -43,7 +41,7 @@ describe('RoleTemplate', function() {
                     let noRegion = false;
                     return new RoleTemplate(validKey, invalidRole, noRegion);
                 };
-        
+
                 expect(wrapper).to.throw(error);
             });
         });
@@ -62,20 +60,9 @@ describe('RoleTemplate', function() {
         });
     });
 
-    describe('setAssumePolicy()', () => {
-
-    });
-    describe('setPath()', () => {
-
-    });
-    describe('addAwsManagedPolicy()', () => {
-
-    });
-    describe('addUserManagedPolicy()', () => {
-
-    });
-    describe('addPolicy()', () => {
-
-    });
+    describe('setAssumePolicy()', () => {});
+    describe('setPath()', () => {});
+    describe('addAwsManagedPolicy()', () => {});
+    describe('addUserManagedPolicy()', () => {});
+    describe('addPolicy()', () => {});
 });
-

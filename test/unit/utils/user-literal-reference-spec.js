@@ -7,7 +7,9 @@ const expect = _chai.expect;
 const _rewire = require('rewire');
 const { testValues: _testValues } = require('@vamship/test-utils');
 
-const UserLiteralReference  = _rewire('../../../src/utils/user-literal-reference');
+const UserLiteralReference = _rewire(
+    '../../../src/utils/user-literal-reference'
+);
 
 describe('UserLiteralReference', function() {
     function _createUserLiteralRef(username) {
@@ -22,7 +24,7 @@ describe('UserLiteralReference', function() {
                 const wrapper = () => {
                     return new UserLiteralReference(invalidUsername);
                 };
-        
+
                 expect(wrapper).to.throw(error);
             });
         });
@@ -48,4 +50,3 @@ describe('UserLiteralReference', function() {
         });
     });
 });
-

@@ -17,7 +17,7 @@ class Template {
      *        key will be converted to camel case when used in the generated
      *        template.
      * @param {String} type The cloud formation template type.
-     * @param {Object} refObj An object representing the CloudFormation JSON 
+     * @param {Object} refObj An object representing the CloudFormation JSON
      *                        necessary to reference this object. DEPRECATED
      * @param {Object} [props={}] Optional properties to set on the object.
      * @param {Object} [exports={}] Optional properties to be exported by the object
@@ -29,10 +29,14 @@ class Template {
         if (typeof type !== 'string' || type.length <= 0) {
             throw new Error('Invalid template type specified (arg #2)');
         }
-        if (!props || (props instanceof Array) || typeof props !== 'object') {
+        if (!props || props instanceof Array || typeof props !== 'object') {
             props = {};
         }
-        if (!exports || (exports instanceof Array) || typeof exports !== 'object') {
+        if (
+            !exports ||
+            exports instanceof Array ||
+            typeof exports !== 'object'
+        ) {
             exports = {};
         }
         this._logger = _loggerProvider.getLogger(`template::${key}`);
@@ -85,7 +89,6 @@ class Template {
 
         return result[propToken];
     }
-
 
     /**
      * Recursively parses properties, replacing tokens within string properties
@@ -176,7 +179,7 @@ class Template {
      * @return {Object} An object that represents the template markup
      */
     finalize(data) {
-        if (!data || (data instanceof Array) || typeof data !== 'object') {
+        if (!data || data instanceof Array || typeof data !== 'object') {
             data = {};
         }
         const result = {

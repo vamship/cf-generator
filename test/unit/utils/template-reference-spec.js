@@ -22,7 +22,6 @@ describe('TemplateReference', function() {
                 const wrapper = () => {
                     return new TemplateReference(invalidKey);
                 };
-        
                 expect(wrapper).to.throw(error);
             });
         });

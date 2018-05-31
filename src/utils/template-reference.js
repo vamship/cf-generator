@@ -48,4 +48,3 @@ class TemplateReference extends Reference {
 }
 
 module.exports = TemplateReference;
-

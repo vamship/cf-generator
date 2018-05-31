@@ -4,7 +4,6 @@
  * A module that exposes utility methods related to IAM objects.
  */
 const iamUtils = {
-
     /**
      * Gets an IAM role URI based on the role name. If the role value is
      * prefixed with "$REGION", the generated role name will be prefixed
@@ -16,7 +15,9 @@ const iamUtils = {
      *         role uri.
      */
     getRoleUri: function(role) {
-        throw new Error('IAM utils function [getRoleUri] not being implemented.')
+        throw new Error(
+            'IAM utils function [getRoleUri] not being implemented.'
+        );
     },
 
     /**
@@ -27,7 +28,9 @@ const iamUtils = {
      * @return {String} The IAM policy uri.
      */
     getAwsPolicyUri: function(policyName) {
-        throw new Error('IAM utils function [getAwsPolicyUri] not being implemented.');
+        throw new Error(
+            'IAM utils function [getAwsPolicyUri] not being implemented.'
+        );
     },
 
     /**
@@ -39,7 +42,9 @@ const iamUtils = {
      *         policy uri.
      */
     getUserPolicyUri: function(policyName) {
-        throw new Error('IAM utils function [getUserPolicyUri] not being implemented.');
+        throw new Error(
+            'IAM utils function [getUserPolicyUri] not being implemented.'
+        );
     },
 
     /**
@@ -51,7 +56,9 @@ const iamUtils = {
      *         user uri.
      */
     getUserUri: function(username) {
-        throw new Error('IAM utils function [getUserUri] not being implemented.');
+        throw new Error(
+            'IAM utils function [getUserUri] not being implemented.'
+        );
     }
 };
 

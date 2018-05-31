@@ -12,7 +12,7 @@ class Reference {
     /**
      * @protected
      * @param {string} reference Representing the logical ID of the CloudFormation
-     *        resource 
+     *        resource
      * @param {Object} reference Some object that AWS CloudFormation can
      *        use to resolve the referenced Template resource
      */
@@ -20,13 +20,16 @@ class Reference {
         // TODO: I think reference can be restricted to strings only, remove
         // Object support
         let errMsg = 'Invalid reference specified (arg #1)';
-        if (!reference || !(['object','string'].includes(typeof reference))) {
+        if (!reference || !['object', 'string'].includes(typeof reference)) {
             throw new Error(errMsg);
         }
         if (typeof reference === 'string' && reference.length <= 0) {
             throw new Error(errMsg);
         }
-        if (typeof reference === 'object' && Object.keys(reference).length < 1) {
+        if (
+            typeof reference === 'object' &&
+            Object.keys(reference).length < 1
+        ) {
             throw new Error(errMsg);
         }
 
@@ -45,4 +48,3 @@ class Reference {
 }
 
 module.exports = Reference;
-

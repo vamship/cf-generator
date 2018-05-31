@@ -7,16 +7,16 @@ const expect = _chai.expect;
 const _rewire = require('rewire');
 const { testValues: _testValues } = require('@vamship/test-utils');
 
-const PolicyStatement = _rewire('../../../../src/templates/iam/policy-statement');
+const PolicyStatement = _rewire(
+    '../../../../src/templates/iam/policy-statement'
+);
 
 describe('PolicyStatement', function() {
     function _createPolicyStatement() {
         return new PolicyStatement();
     }
 
-    beforeEach('Inject dependencies', () => {
-
-    });
+    beforeEach('Inject dependencies', () => {});
 
     describe('ctor()', () => {
         it('should expose expected methods and properties', () => {
@@ -27,10 +27,14 @@ describe('PolicyStatement', function() {
             expect(aPolicyStatement._ensurePrincipalType).to.be.a('function');
             expect(aPolicyStatement.setEffect).to.be.a('function');
             expect(aPolicyStatement.addServicePrincipal).to.be.a('function');
-            expect(aPolicyStatement.addCanonicalUserPrincipal).to.be.a('function');
+            expect(aPolicyStatement.addCanonicalUserPrincipal).to.be.a(
+                'function'
+            );
             expect(aPolicyStatement.addIamUserPrincipal).to.be.a('function');
             expect(aPolicyStatement.addAwsAccountPrincipal).to.be.a('function');
-            expect(aPolicyStatement.addAnonymousUserPrincipal).to.be.a('function');
+            expect(aPolicyStatement.addAnonymousUserPrincipal).to.be.a(
+                'function'
+            );
             expect(aPolicyStatement.addAction).to.be.a('function');
             expect(aPolicyStatement.addResource).to.be.a('function');
             expect(aPolicyStatement.addResourceArn).to.be.a('function');
@@ -38,7 +42,7 @@ describe('PolicyStatement', function() {
     });
 
     describe('_ensurePrincipalType()', () => {
-        it('should set the policy statement\'s principal type', () => {
+        it("should set the policy statement's principal type", () => {
             let aStatement = _createPolicyStatement();
             let aPrincipal = _testValues.getString('principal');
             let initialPrincipal = aStatement.properties.Principal;
@@ -51,9 +55,9 @@ describe('PolicyStatement', function() {
             expect(changedPrincipal[aPrincipal]).to.not.be.null;
         });
 
-        it('should not set the policy statement\'s principal type because it was already set', () => {
+        it("should not set the policy statement's principal type because it was already set", () => {
             let aStatement = _createPolicyStatement();
-            aStatement.properties.Principal = { 'sometype': [] };
+            aStatement.properties.Principal = { sometype: [] };
             let initialPrincipal = aStatement.properties.Principal;
 
             aStatement._ensurePrincipalType('sometype');
@@ -65,7 +69,7 @@ describe('PolicyStatement', function() {
     });
 
     describe('setEffect()', () => {
-        ['Allow','Deny'].forEach((validEffect) => {
+        ['Allow', 'Deny'].forEach((validEffect) => {
             it(`should successfully set the policy effect to [${validEffect}]`, () => {
                 let aStatement = _createPolicyStatement();
 
@@ -76,16 +80,19 @@ describe('PolicyStatement', function() {
         });
 
         it('should throw an error when given an invalid effect type', () => {
-            let err = 'Invalid policy effect specified. Must be one of: [Allow,Deny]';
+            let err =
+                'Invalid policy effect specified. Must be one of: [Allow,Deny]';
 
-            _testValues.allButString('', 'invalid', 'allow', 'deny').forEach((invalidEffect) => {
-                const wrapper = () => {
-                    let aStatement = _createPolicyStatement();
-                    aStatement.setEffect(invalidEffect);
-                };
+            _testValues
+                .allButString('', 'invalid', 'allow', 'deny')
+                .forEach((invalidEffect) => {
+                    const wrapper = () => {
+                        let aStatement = _createPolicyStatement();
+                        aStatement.setEffect(invalidEffect);
+                    };
 
-                expect(wrapper).to.throw(err);
-            });
+                    expect(wrapper).to.throw(err);
+                });
         });
     });
 
@@ -116,11 +123,9 @@ describe('PolicyStatement', function() {
                 expect(wrapper).to.throw(err);
             });
         });
-
     });
 
     describe('addCanonicaluserPrincipal()', () => {
-
         it('should throw an error when given an invalid canonical user', () => {
             let err = 'Invalid canonical user specified (arg #1)';
 
@@ -136,7 +141,6 @@ describe('PolicyStatement', function() {
     });
 
     describe('addIamUserPrincipal()', () => {
-
         it('should throw an error when given an invalid iam user', () => {
             let err = 'Invalid iam username specified (arg #1)';
 
@@ -151,12 +155,10 @@ describe('PolicyStatement', function() {
         });
     });
 
-    describe('addAwsAccountPrincipal()', () => {
-
-    });
+    describe('addAwsAccountPrincipal()', () => {});
 
     describe('addAnonymousUserPrincipal()', () => {
-        it('should successfully set the policy statement\'s user principal to anonymous (*)', () => {
+        it("should successfully set the policy statement's user principal to anonymous (*)", () => {
             let aStatement = _createPolicyStatement();
             let initialService = aStatement.properties.Principal;
             expect(initialService).to.be.undefined;
@@ -169,7 +171,7 @@ describe('PolicyStatement', function() {
     });
 
     describe('addAction()', () => {
-        ['_','someAction','!anoth3r@ction$'].forEach((validAction) => {
+        ['_', 'someAction', '!anoth3r@ction$'].forEach((validAction) => {
             it(`should successfully set the policy statement\'s action to [${validAction}]`, () => {
                 let aStatement = _createPolicyStatement();
                 let initialActions = aStatement.properties.Action;
@@ -196,7 +198,7 @@ describe('PolicyStatement', function() {
     });
 
     describe('addResource()', () => {
-        ['_','someResource','!anoth3rR3$0urc%'].forEach((validResource) => {
+        ['_', 'someResource', '!anoth3rR3$0urc%'].forEach((validResource) => {
             it(`should successfully set the policy statement\'s action to [${validResource}]`, () => {
                 let aStatement = _createPolicyStatement();
                 let initialResources = aStatement.properties.Resource;
@@ -222,8 +224,5 @@ describe('PolicyStatement', function() {
         });
     });
 
-    describe('addResourceArn()', () => {
-
-    });
+    describe('addResourceArn()', () => {});
 });
-

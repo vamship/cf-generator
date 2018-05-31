@@ -23,9 +23,11 @@ class PolicyStatement {
      * @param {String} type The principal type.
      */
     _ensurePrincipalType(type) {
-        if (!this.properties.Principal ||
+        if (
+            !this.properties.Principal ||
             !this.properties.Principal[type] ||
-            !(this.properties.Principal[type] instanceof Array)) {
+            !(this.properties.Principal[type] instanceof Array)
+        ) {
             this.properties.Principal = {};
             this.properties.Principal[type] = [];
         }
@@ -51,7 +53,9 @@ class PolicyStatement {
      */
     setEffect(effect) {
         if (POLICY_EFFECTS.indexOf(effect) < 0) {
-            throw new Error(`Invalid policy effect specified. Must be one of: [${POLICY_EFFECTS}]`);
+            throw new Error(
+                `Invalid policy effect specified. Must be one of: [${POLICY_EFFECTS}]`
+            );
         }
         this.properties.Effect = effect;
 
@@ -107,7 +111,9 @@ class PolicyStatement {
             throw new Error('Invalid iam username specified (arg #1)');
         }
         this._ensurePrincipalType('AWS');
-        this.properties.Principal.AWS.push(_iamUtils.getUserUri(`user/${username}`));
+        this.properties.Principal.AWS.push(
+            _iamUtils.getUserUri(`user/${username}`)
+        );
 
         return this;
     }
@@ -218,15 +224,21 @@ class PolicyStatement {
             this.properties.Resource = [];
         }
         const resource = {
-            'Fn::Join': ['', [
-                `arn:aws:${resourceType}:`, {
-                    Ref: 'AWS::Region'
-                }, ':', {
-                    Ref: 'AWS::AccountId'
-                },
-                ':',
-                suffix
-            ]]
+            'Fn::Join': [
+                '',
+                [
+                    `arn:aws:${resourceType}:`,
+                    {
+                        Ref: 'AWS::Region'
+                    },
+                    ':',
+                    {
+                        Ref: 'AWS::AccountId'
+                    },
+                    ':',
+                    suffix
+                ]
+            ]
         };
         this.properties.Resource.push(resource);
 

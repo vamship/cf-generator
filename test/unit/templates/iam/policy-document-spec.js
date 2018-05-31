@@ -14,9 +14,7 @@ describe('PolicyDocument', function() {
         return new PolicyDocument();
     }
 
-    beforeEach('Inject dependencies', () => {
-
-    });
+    beforeEach('Inject dependencies', () => {});
 
     describe('ctor()', () => {
         it('should expose expected methods and properties', () => {
@@ -28,8 +26,5 @@ describe('PolicyDocument', function() {
         });
     });
 
-    describe('addStatement()', () => {
-
-    });
+    describe('addStatement()', () => {});
 });
-

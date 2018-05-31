@@ -44,4 +44,3 @@ class PolicyDocument {
 }
 
 module.exports = PolicyDocument;
-

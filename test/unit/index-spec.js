@@ -13,8 +13,8 @@ const UserLiteralReference = require('../../src/utils/user-literal-reference');
 const RoleLiteralReference = require('../../src/utils/role-literal-reference');
 
 describe('_index', function() {
-
     it('should implement methods required by the interface', function() {
+        expect(_index).to.be.an('object');
         expect(_index.TemplateBuilder).to.equal(TemplateBuilder);
         expect(_index.TemplateReference).to.equal(TemplateReference);
         expect(_index.UserLiteralReference).to.equal(UserLiteralReference);
