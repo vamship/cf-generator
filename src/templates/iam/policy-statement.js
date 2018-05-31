@@ -104,7 +104,7 @@ class PolicyStatement {
      */
     addIamUserPrincipal(username) {
         if (typeof username !== 'string' || username.length <= 0) {
-            throw new Error('Invalid canonical username specified (arg #1)');
+            throw new Error('Invalid iam username specified (arg #1)');
         }
         this._ensurePrincipalType('AWS');
         this.properties.Principal.AWS.push(_iamUtils.getUserUri(`user/${username}`));
